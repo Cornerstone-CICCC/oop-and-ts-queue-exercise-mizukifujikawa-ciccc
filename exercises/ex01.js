@@ -8,6 +8,18 @@ const Queue = require('../lib/Queue')
 
 function processApplicants(queue) {
   // your code here
+  const tmp = new Queue();
+  while (!queue.isEmpty()) {
+    const applicant = queue.dequeue();
+
+    if (applicant.yearsExperience >= 2 && applicant.techStack.includes('React')) {
+      tmp.enqueue(applicant);
+    }
+  }
+
+  while (!tmp.isEmpty()) {
+    queue.enqueue(tmp.dequeue());
+  }
 }
 
 const applicants = new Queue()
